@@ -1,10 +1,11 @@
 const express = require('express')
-const ip = require('ip')
+var requestIp = require('request-ip');
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Lấy IP thành công', ip: ip.address() })
+    var ip_info = requestIp.getClientIp(req);
+    res.json({ message: 'Lấy IP thành công', ip: ip_info});
 })
 
 app.listen(port, () => {
